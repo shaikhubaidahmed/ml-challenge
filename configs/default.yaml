@@ -1,0 +1,18 @@
+# Paths are relative to this repo root (code/business_entity_resolution) unless absolute.
+paths:
+  data_dir: ../../student_resource/dataset
+  work_dir: ../../work
+  output_dir: ../../output
+
+seed: 42
+
+blocking:
+  # Tokens appearing in more pool records than this (within one country) are not used as block keys.
+  max_df: 500
+  # Keep this many top-scored candidates per Source 1 entity.
+  top_k: 60
+  s1_chunk: 100000
+
+validation:
+  # Train S1 entities are assigned to folds by hash(entity_id) % n_folds.
+  n_folds: 2

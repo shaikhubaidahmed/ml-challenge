@@ -1,0 +1,24 @@
+# v4 = v3 candidates + name-evidence features (scripts/add_name_features.py -> *_feats_nev). Same work_dir as v3.
+# Paths are relative to this repo root (code/business_entity_resolution) unless absolute.
+paths:
+  data_dir: ../../student_resource/dataset
+  work_dir: ../../work_v3
+  output_dir: ../../output_v4
+
+seed: 42
+
+blocking:
+  # Tokens appearing in more pool records than this (within one country) are not used as block keys.
+  max_df: 500
+  # First pass: keep this many top IDF-scored candidates per Source 1 entity.
+  top_k: 300
+  # Second pass: reranker keeps this many per Source 1 entity (these feed the pair model).
+  rerank_k: 50
+  s1_chunk: 50000
+
+validation:
+  # Train S1 entities are assigned to folds by hash(entity_id) % n_folds.
+  n_folds: 2
+
+# learned Indic-script transliteration + field-specific abbreviations
+translit: true
